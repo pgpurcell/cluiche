@@ -57,7 +57,10 @@ div.form label
 {
 	font-weight: bold;
 	font-size: 0.9em;
-	display: block;
+	
+	/* PP - 23/03/2013
+	   Removed to allow label and value on same line */
+	/*display: block;*/
 }
 
 div.form .row
@@ -162,3 +165,34 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	clear: left;
 	padding-left: 110px;
 }
+
+/* PP - 23/03/2013 */
+div.form .row .left, div.form .row .right
+{
+	width: 50%;
+}
+
+div.form .row .left
+{
+	float: left;
+}
+
+div.form .row .right
+{
+	float: right;
+}
+
+div.left div.name,
+div.right div.name
+{
+	float: left;
+	width: 30%;
+}
+
+div.left div.value,
+div.right div.value
+{
+	float: right;
+	width: 70%;
+}
+/* PP */
