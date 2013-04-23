@@ -9,6 +9,8 @@
  * @property string $type
  * @property string $code
  * @property string $grade
+ * @property string $short_code
+ * @property string $abbrev
  */
 class Team extends CActiveRecord
 {
@@ -38,12 +40,12 @@ class Team extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, type, code, grade', 'required'),
 			array('name, type', 'length', 'max'=>32),
 			array('code, grade', 'length', 'max'=>16),
+			array('short_code, abbrev', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, type, code, grade', 'safe', 'on'=>'search'),
+			array('id, name, type, code, grade, short_code, abbrev', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +73,8 @@ class Team extends CActiveRecord
 			'type' => 'Type',
 			'code' => 'Code',
 			'grade' => 'Grade',
+			'short_code' => 'Short Code',
+			'abbrev' => 'Abbrev',
 		);
 	}
 
@@ -90,6 +94,8 @@ class Team extends CActiveRecord
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('code',$this->code,true);
 		$criteria->compare('grade',$this->grade,true);
+		$criteria->compare('short_code',$this->short_code,true);
+		$criteria->compare('abbrev',$this->abbrev,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -105,7 +111,7 @@ class Team extends CActiveRecord
 	public static function teamsAutoComplete($name='')
 	{
 		// Recommended: Secure Way to Write SQL in Yii 
-		$sql= 'SELECT id, name as value FROM teams WHERE name LIKE :name';
+		$sql= "SELECT id, CONCAT(name,' (',short_code,')') as value FROM teams WHERE name LIKE :name";
 		$name = $name.'%';
 		return Yii::app()->db->createCommand($sql)->queryAll(true,array(':name'=>$name));
 	}

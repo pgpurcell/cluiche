@@ -36,6 +36,16 @@
 		<?php echo $form->textField($model,'grade',array('size'=>16,'maxlength'=>16)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'short_code'); ?>
+		<?php echo $form->textField($model,'short_code',array('size'=>8,'maxlength'=>8)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'abbrev'); ?>
+		<?php echo $form->textField($model,'abbrev',array('size'=>8,'maxlength'=>8)); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

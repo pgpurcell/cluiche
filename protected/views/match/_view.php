@@ -3,6 +3,87 @@
 /* @var $data Match */
 ?>
 
+<?php
+// PPurcell - 21/04/2013
+// For the short codes
+require('protected/views/match/dropdownlists.php');
+?>
+
+<?php
+if ($index == 0 && 1==2)
+{
+?>
+<tr>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('season')); ?>
+	</th>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('date_time')); ?>
+	</th>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('code')); ?>
+	</th>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('grade')); ?>
+	</th>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('type')); ?>
+	</th>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('competition_id')); ?>
+	</th>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('section')); ?>
+	</th>
+	<th>
+		<?php echo CHtml::encode($data->getAttributeLabel('stage')); ?>
+	</th>
+</tr>
+<?php
+}
+?>
+
+<tr>
+	<td>
+		<?php
+		$data_str = $type_shortcodes[$data->type].' '
+			.$grade_shortcodes[$data->grade]
+			.$code_shortcodes[$data->code];
+		echo CHtml::encode($data_str); 
+		?>
+	</td>
+	<td>
+		<?php
+		$competition_name = (isset($data->competition))?$data->competition->name:'';
+		$data_str = $data->season.' '
+			.$competition_name.' '
+			.$data->section.' '
+			.$data->stage;
+		echo CHtml::encode($data_str); 
+		?>
+	</td>
+	<td>
+		<?php echo CHtml::link(CHtml::encode($data->season), array('view', 'id'=>$data->id)); ?>
+	</td>
+	<td>
+		<?php echo CHtml::encode(date('d/m/Y', strtotime($data->date_time))); ?>
+	</td>
+	<td>
+		<?php echo CHtml::encode($competition_name); ?>
+	</td>
+	<td>
+		<?php echo CHtml::encode($data->section); ?>
+	</td>
+	<td>
+		<?php echo CHtml::encode($data->stage); ?>
+	</td>
+</tr>
+
+	
+	
+	
+<?php
+/*
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
@@ -72,4 +153,4 @@
 
 	*/ ?>
 
-</div>
+<!--/div-->

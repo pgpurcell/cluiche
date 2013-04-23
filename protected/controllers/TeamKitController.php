@@ -1,6 +1,6 @@
 <?php
 
-class MatchController extends Controller
+class TeamKitController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -28,11 +28,7 @@ class MatchController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>
-					array(
-						'index','view','autocompleteReferee','autocompleteVenue','autocompleteTeam1',
-						'autocompleteTeam2','autocompleteCompetition'
-					),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -66,14 +62,14 @@ class MatchController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Match;
+		$model=new TeamKit;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Match']))
+		if(isset($_POST['TeamKit']))
 		{
-			$model->attributes=$_POST['Match'];
+			$model->attributes=$_POST['TeamKit'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -95,9 +91,9 @@ class MatchController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Match']))
+		if(isset($_POST['TeamKit']))
 		{
-			$model->attributes=$_POST['Match'];
+			$model->attributes=$_POST['TeamKit'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -126,7 +122,7 @@ class MatchController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Match');
+		$dataProvider=new CActiveDataProvider('TeamKit');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -137,10 +133,10 @@ class MatchController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Match('search');
+		$model=new TeamKit('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Match']))
-			$model->attributes=$_GET['Match'];
+		if(isset($_GET['TeamKit']))
+			$model->attributes=$_GET['TeamKit'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -151,12 +147,12 @@ class MatchController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Match the loaded model
+	 * @return TeamKit the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Match::model()->findByPk($id);
+		$model=TeamKit::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -164,83 +160,13 @@ class MatchController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Match $model the model to be validated
+	 * @param TeamKit $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='match-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='team-kit-form')
 		{
 			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
-
-	/**
-	 * Adds autocompletion to the referee field
-	 * @author Patrick Purcell
-	 */
-	public function actionAutocompleteReferee() {
-		$term = trim($_GET['term']) ;
-
-		if($term !='') {
-			$referees =  Referee::refereesAutoComplete($term);
-			echo CJSON::encode($referees);
-			Yii::app()->end();
-		}
-	}
-
-	/**
-	 * Adds autocompletion to the venue field
-	 * @author Patrick Purcell
-	 */
-	public function actionAutocompleteVenue() {
-		$term = trim($_GET['term']) ;
-
-		if($term !='') {
-			$venues =  Venue::venuesAutoComplete($term);
-			echo CJSON::encode($venues);
-			Yii::app()->end();
-		}
-	}
-
-	/**
-	 * Adds autocompletion to the team1 field
-	 * @author Patrick Purcell
-	 */
-	public function actionAutocompleteTeam1() {
-		$term = trim($_GET['term']) ;
-
-		if($term !='') {
-			$teams =  Team::teamsAutoComplete($term);
-			echo CJSON::encode($teams);
-			Yii::app()->end();
-		}
-	}
-
-	/**
-	 * Adds autocompletion to the team2 field
-	 * @author Patrick Purcell
-	 */
-	public function actionAutocompleteTeam2() {
-		$term = trim($_GET['term']) ;
-
-		if($term !='') {
-			$teams =  Team::teamsAutoComplete($term);
-			echo CJSON::encode($teams);
-			Yii::app()->end();
-		}
-	}
-
-	/**
-	 * Adds autocompletion to the competition field
-	 * @author Patrick Purcell
-	 */
-	public function actionAutocompleteCompetition() {
-		$term = trim($_GET['term']) ;
-
-		if($term !='') {
-			$competitions =  Competition::competitionsAutoComplete($term);
-			echo CJSON::encode($competitions);
 			Yii::app()->end();
 		}
 	}

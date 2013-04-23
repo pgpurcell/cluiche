@@ -7,7 +7,10 @@
 <?php
 // PPurcell - 16/03/2013
 // Add some dropdown arrays
-require_once('protected/views/match/dropdownlists.php');
+require('protected/views/match/dropdownlists.php');
+
+// For the relate fields
+require_once('protected/views/ViewUtils.php');
 ?>
 
 <div class="form">
@@ -77,13 +80,7 @@ require_once('protected/views/match/dropdownlists.php');
 			</div>
 		</div>
 		<div class="right">
-			<div class="name">
-				<?php echo $form->labelEx($model,'competition'); ?>
-			</div>
-			<div class="value">
-				<?php echo $form->textField($model,'competition',array('size'=>25,'maxlength'=>64)); ?>
-				<?php echo $form->error($model,'competition'); ?>
-			</div>
+			<?php ViewUtils::displayRelateEdit('competition_id', $model, 'competition', 'match', $form, $this); ?>
 		</div>
 		<div style="clear:both;"></div>
 	</div>
@@ -128,29 +125,7 @@ require_once('protected/views/match/dropdownlists.php');
 
 	<div class="row">
 		<div class="left">
-			<div class="name">
-				<?php echo $form->labelEx($model,'team1_id'); ?>
-			</div>
-			<div class="value">
-				<?php echo $form->hiddenField($model,'team1_id',array()); ?>
-				<?php
-				// TODO: Make this into a method as it's fairly common
-				$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-					'name'=>'team1',
-					'value'=>(isset($model->team1))?$model->team1->name:'',
-					'source'=>$this->createUrl('match/autocompleteTeam1'),
-					// additional javascript options for the autocomplete plugin
-					'options'=>array(
-							'showAnim'=>'fold',
-							'select'=>
-								"js:function(event, ui) {
-									$('#Match_team1_id').val(ui.item.id);
-								}"
-					),
-				));
-				?>
-				<?php echo $form->error($model,'team1_id'); ?>
-			</div>
+			<?php ViewUtils::displayRelateEdit('team1_id', $model, 'team1', 'match', $form, $this); ?>
 		</div>
 		<div class="right">
 			<div class="name">
@@ -166,29 +141,7 @@ require_once('protected/views/match/dropdownlists.php');
 
 	<div class="row">
 		<div class="left">
-			<div class="name">
-				<?php echo $form->labelEx($model,'team2_id'); ?>
-			</div>
-			<div class="value">
-				<?php echo $form->hiddenField($model,'team2_id',array()); ?>
-				<?php
-				// TODO: Make this into a method as it's fairly common
-				$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-					'name'=>'team2',
-					'value'=>(isset($model->team2))?$model->team2->name:'',
-					'source'=>$this->createUrl('match/autocompleteTeam2'),
-					// additional javascript options for the autocomplete plugin
-					'options'=>array(
-							'showAnim'=>'fold',
-							'select'=>
-								"js:function(event, ui) {
-									$('#Match_team2_id').val(ui.item.id);
-								}"
-					),
-				));
-				?>
-				<?php echo $form->error($model,'team2_id'); ?>
-			</div>
+			<?php ViewUtils::displayRelateEdit('team2_id', $model, 'team2', 'match', $form, $this); ?>
 		</div>
 		<div class="right">
 			<div class="name">
@@ -204,54 +157,10 @@ require_once('protected/views/match/dropdownlists.php');
 
 	<div class="row">
 		<div class="left">
-			<div class="name">
-				<?php echo $form->labelEx($model,'venue_id'); ?>
-			</div>
-			<div class="value">
-				<?php echo $form->hiddenField($model,'venue_id',array()); ?>
-				<?php
-				// TODO: Make this into a method as it's fairly common
-				$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-					'name'=>'venue',
-					'value'=>(isset($model->venue))?$model->venue->name:'',
-					'source'=>$this->createUrl('match/autocompleteVenue'),
-					// additional javascript options for the autocomplete plugin
-					'options'=>array(
-							'showAnim'=>'fold',
-							'select'=>
-								"js:function(event, ui) {
-									$('#Match_venue_id').val(ui.item.id);
-								}"
-					),
-				));
-				?>
-				<?php echo $form->error($model,'venue_id'); ?>
-			</div>
+			<?php ViewUtils::displayRelateEdit('venue_id', $model, 'venue', 'match', $form, $this); ?>
 		</div>
 		<div class="right">
-			<div class="name">
-				<?php echo $form->labelEx($model,'referee_id'); ?>
-			</div>
-			<div class="value">
-				<?php //echo $form->textField($model,'referee_id',array('size'=>32,'maxlength'=>32)); ?>
-				<?php echo $form->hiddenField($model,'referee_id',array()); ?>
-				<?php
-				$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-					'name'=>'referee',
-					'value'=>(isset($model->referee))?$model->referee->name:'',
-					'source'=>$this->createUrl('match/autocompleteReferee'),
-					// additional javascript options for the autocomplete plugin
-					'options'=>array(
-							'showAnim'=>'fold',
-							'select'=>
-								"js:function(event, ui) {
-									$('#Match_referee_id').val(ui.item.id);
-								}"
-					),
-				));
-				?>
-				<?php echo $form->error($model,'referee_id'); ?>
-			</div>
+			<?php ViewUtils::displayRelateEdit('referee_id', $model, 'referee', 'match', $form, $this); ?>
 		</div>
 		<div style="clear:both;"></div>
 	</div>

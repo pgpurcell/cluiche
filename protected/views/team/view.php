@@ -26,5 +26,7 @@ $this->menu=array(
 		'type',
 		'code',
 		'grade',
+		'short_code',
+		'abbrev',
 	),
 )); ?>

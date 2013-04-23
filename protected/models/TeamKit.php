@@ -1,18 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "competitions".
+ * This is the model class for table "team_kits".
  *
- * The followings are the available columns in table 'competitions':
+ * The followings are the available columns in table 'team_kits':
  * @property integer $id
- * @property string $name
+ * @property string $image
+ * @property integer $team_id
+ * @property string $date_from
+ * @property string $date_to
  */
-class Competition extends CActiveRecord
+class TeamKit extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Competition the static model class
+	 * @return TeamKit the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +27,7 @@ class Competition extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'competitions';
+		return 'team_kits';
 	}
 
 	/**
@@ -35,11 +38,12 @@ class Competition extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>64),
+			array('team_id', 'numerical', 'integerOnly'=>true),
+			array('image', 'length', 'max'=>64),
+			array('date_from, date_to', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, image, team_id, date_from, date_to', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +65,10 @@ class Competition extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'image' => 'Image',
+			'team_id' => 'Team',
+			'date_from' => 'Date From',
+			'date_to' => 'Date To',
 		);
 	}
 
@@ -77,25 +84,13 @@ class Competition extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('image',$this->image,true);
+		$criteria->compare('team_id',$this->team_id);
+		$criteria->compare('date_from',$this->date_from,true);
+		$criteria->compare('date_to',$this->date_to,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-
-	/**
-	 * Auto Complete method for competitions
-	 * @author Patrick Purcell
-	 * @param string $name
-	 * @return array records containing autocomplete filter
-	 */
-	public static function competitionsAutoComplete($name='')
-	{
-		// Recommended: Secure Way to Write SQL in Yii 
-		//$sql= 'SELECT id ,title AS label FROM users WHERE title LIKE :name';
-		$sql= 'SELECT id, name as value FROM competitions WHERE name LIKE :name';
-		$name = $name.'%';
-		return Yii::app()->db->createCommand($sql)->queryAll(true,array(':name'=>$name));
 	}
 }

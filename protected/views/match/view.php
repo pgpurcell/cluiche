@@ -21,34 +21,13 @@ $this->menu=array(
 	<?php
 	// PPurcell - 19/03/2013
 	// Only set if the related model exists
-	// TODO: Make a function of this
-	$referee_name = '';
-	$referee_county = '';	
-	if (isset($model->referee))
-	{
-		$referee_name = $model->referee->name;
-		$referee_county = $model->referee->county;
-	}
-
-	$venue_name = '';
-	$venue_address = '';	
-	if (isset($model->venue))
-	{
-		$venue_name = $model->venue->name;
-		$venue_address = $model->venue->address;
-	}
-
-	$team1_name = '';
-	if (isset($model->team1))
-	{
-		$team1_name = $model->team1->name;
-	}
-
-	$team2_name = '';
-	if (isset($model->team2))
-	{
-		$team2_name = $model->team2->name;
-	}
+	$referee_name = (isset($model->referee))?$model->referee->name:'';
+	$referee_county = (isset($model->referee))?$model->referee->county:'';
+	$venue_name = (isset($model->venue))?$model->venue->name:'';
+	$venue_address = (isset($model->address))?$model->venue->address:'';
+	$team1_name = (isset($model->team1))?$model->team1->name:'';
+	$team2_name = (isset($model->team2))?$model->team2->name:'';
+	$competition_name = (isset($model->competition))?$model->competition->name:'';
 	?>
 	<?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -59,7 +38,8 @@ $this->menu=array(
 		'code',
 		'grade',
 		'type',
-		'competition',
+		//'competition_id',
+		array('label'=>$model->getAttributeLabel('competition_id'), 'value'=>$competition_name),
 		'alt_comp_name',
 		'section',
 		'stage',

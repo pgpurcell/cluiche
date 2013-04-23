@@ -25,5 +25,13 @@
 	<?php echo CHtml::encode($data->grade); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('short_code')); ?>:</b>
+	<?php echo CHtml::encode($data->short_code); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('abbrev')); ?>:</b>
+	<?php echo CHtml::encode($data->abbrev); ?>
+	<br />
+
 
 </div>

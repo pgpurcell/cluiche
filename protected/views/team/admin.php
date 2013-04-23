@@ -50,6 +50,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'type',
 		'code',
 		'grade',
+		'short_code',
+		'abbrev',
 		array(
 			'class'=>'CButtonColumn',
 		),

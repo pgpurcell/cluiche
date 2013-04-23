@@ -10,7 +10,7 @@
  * @property string $code
  * @property string $grade
  * @property string $type
- * @property string $competition
+ * @property integer $competition_id
  * @property string $alt_comp_name
  * @property string $section
  * @property string $stage
@@ -49,15 +49,15 @@ class Match extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('season, date_time, code, grade, type, competition, score1, score2', 'required'),
-			array('team1_id, team2_id, venue_id, referee_id', 'numerical', 'integerOnly'=>true),
+			array('competition_id, team1_id, team2_id, venue_id, referee_id', 'numerical', 'integerOnly'=>true),
 			array('season, code, grade, type', 'length', 'max'=>16),
-			array('competition, alt_comp_name', 'length', 'max'=>64),
+			array('alt_comp_name', 'length', 'max'=>64),
 			array('section, stage', 'length', 'max'=>32),
 			array('score1, score2', 'length', 'max'=>8),
+			array('date_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, season, date_time, code, grade, type, competition, alt_comp_name, section, stage, team1_id, score1, team2_id, score2, venue_id, referee_id', 'safe', 'on'=>'search'),
+			array('id, season, date_time, code, grade, type, competition_id, alt_comp_name, section, stage, team1_id, score1, team2_id, score2, venue_id, referee_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +73,7 @@ class Match extends CActiveRecord
 			'venue'=>array(self::BELONGS_TO, 'Venue', 'venue_id'),
 			'team1'=>array(self::BELONGS_TO, 'Team', 'team1_id'),
 			'team2'=>array(self::BELONGS_TO, 'Team', 'team2_id'),
+			'competition'=>array(self::BELONGS_TO, 'Competition', 'competition_id'),
 		);
 	}
 
@@ -88,7 +89,7 @@ class Match extends CActiveRecord
 			'code' => 'Code',
 			'grade' => 'Grade',
 			'type' => 'Type',
-			'competition' => 'Competition',
+			'competition_id' => 'Competition',
 			'alt_comp_name' => 'Alt Comp Name',
 			'section' => 'Section',
 			'stage' => 'Stage',
@@ -118,7 +119,7 @@ class Match extends CActiveRecord
 		$criteria->compare('code',$this->code,true);
 		$criteria->compare('grade',$this->grade,true);
 		$criteria->compare('type',$this->type,true);
-		$criteria->compare('competition',$this->competition,true);
+		$criteria->compare('competition_id',$this->competition_id);
 		$criteria->compare('alt_comp_name',$this->alt_comp_name,true);
 		$criteria->compare('section',$this->section,true);
 		$criteria->compare('stage',$this->stage,true);

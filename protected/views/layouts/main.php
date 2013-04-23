@@ -30,8 +30,19 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				
+				// PPurcell - 01/04/2013
+				// New menus added
+				//array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+				//array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Matches', 'url'=>array('match/')),
+				array('label'=>'Teams', 'url'=>array('team/')),
+				array('label'=>'Referees', 'url'=>array('referee/')),
+				array('label'=>'Venues', 'url'=>array('venue/')),
+				array('label'=>'Competitions', 'url'=>array('competition/')),
+				array('label'=>'Competition Seasons', 'url'=>array('competitionSeason/')),
+				array('label'=>'Team Kits', 'url'=>array('teamKit/')),
+				
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
