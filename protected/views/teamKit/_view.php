@@ -10,11 +10,14 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('image')); ?>:</b>
-	<?php echo CHtml::encode($data->image); ?>
+	<?php echo (!empty($data->image))?CHtml::image(Yii::app()->assetManager->publish(Yii::app()->basePath.'/../images/teamkits/'.$data->image),"",""):"no image"; ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('team_id')); ?>:</b>
-	<?php echo CHtml::encode($data->team_id); ?>
+	<?php
+	$team_name = (isset($data->team))?$data->team->name:'';
+	echo CHtml::encode($team_name);
+	?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_from')); ?>:</b>

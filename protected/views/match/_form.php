@@ -157,10 +157,46 @@ require_once('protected/views/ViewUtils.php');
 
 	<div class="row">
 		<div class="left">
+			<?php
+			ViewUtils::displayRelateEdit('teamkit1_id', $model, 'teamKit1', 'match', $form, $this, 'id');
+			?>
+		</div>
+		<div class="right">
+			<?php
+			ViewUtils::displayRelateEdit('teamkit2_id', $model, 'teamKit2', 'match', $form, $this, 'id');
+			?>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+
+	<div class="row">
+		<div class="left">
 			<?php ViewUtils::displayRelateEdit('venue_id', $model, 'venue', 'match', $form, $this); ?>
 		</div>
 		<div class="right">
 			<?php ViewUtils::displayRelateEdit('referee_id', $model, 'referee', 'match', $form, $this); ?>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+
+	<div class="row">
+		<div class="left">
+			<div class="name">
+				<?php echo $form->labelEx($model,'attendance'); ?>
+			</div>
+			<div class="value">
+				<?php echo $form->textField($model,'attendance'); ?>
+				<?php echo $form->error($model,'attendance'); ?>
+			</div>
+		</div>
+		<div class="right">
+			<div class="name">
+				<?php echo $form->labelEx($model,'notes'); ?>
+			</div>
+			<div class="value">
+				<?php echo $form->textArea($model,'notes',array('rows'=>6, 'cols'=>50)); ?>
+				<?php echo $form->error($model,'notes'); ?>
+			</div>
 		</div>
 		<div style="clear:both;"></div>
 	</div>

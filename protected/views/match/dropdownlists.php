@@ -15,3 +15,7 @@ $code_shortcodes = array(
 	'Hurling' => 'H',
 	'Football' => 'F',
 );
+$comp_shortcodes = array(
+	'National League' => 'NL',
+	'All-Ireland Championship' => 'AI Champ',
+);

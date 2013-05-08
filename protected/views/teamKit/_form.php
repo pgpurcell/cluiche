@@ -4,6 +4,12 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php
+// PPurcell - 28/04/2013
+// For the relate fields
+require_once('protected/views/ViewUtils.php');
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -22,14 +28,23 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>60,'maxlength'=>64)); ?>
+		<?php //echo $form->textField($model,'image',array('size'=>60,'maxlength'=>64)); ?>
+		<?php echo CHtml::activeFileField($model, 'image'); ?>
 		<?php echo $form->error($model,'image'); ?>
 	</div>
+	<?php
+	if($model->isNewRecord!='1')
+	{
+	?>
+	<div class="row">
+		<?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/teamkits/'.$model->image,"image",""); ?>
+	</div>
+	<?php
+	}
+	?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'team_id'); ?>
-		<?php echo $form->textField($model,'team_id'); ?>
-		<?php echo $form->error($model,'team_id'); ?>
+		<?php ViewUtils::displayRelateEdit('team_id', $model, 'team', 'teamKit', $form, $this); ?>
 	</div>
 
 	<div class="row">

@@ -91,6 +91,16 @@
 		<?php echo $form->textField($model,'referee_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'attendance'); ?>
+		<?php echo $form->textField($model,'attendance'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'notes'); ?>
+		<?php echo $form->textArea($model,'notes',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

@@ -6,6 +6,11 @@
  * The followings are the available columns in table 'competitions':
  * @property integer $id
  * @property string $name
+ * @property string $type
+ * @property string $code
+ * @property string $grade
+ * @property string $short_code
+ * @property string $abbrev
  */
 class Competition extends CActiveRecord
 {
@@ -35,11 +40,13 @@ class Competition extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
 			array('name', 'length', 'max'=>64),
+			array('type', 'length', 'max'=>32),
+			array('code, grade', 'length', 'max'=>16),
+			array('short_code, abbrev', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, type, code, grade, short_code, abbrev', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +69,11 @@ class Competition extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'type' => 'Type',
+			'code' => 'Code',
+			'grade' => 'Grade',
+			'short_code' => 'Short Code',
+			'abbrev' => 'Abbrev',
 		);
 	}
 
@@ -78,6 +90,11 @@ class Competition extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('code',$this->code,true);
+		$criteria->compare('grade',$this->grade,true);
+		$criteria->compare('short_code',$this->short_code,true);
+		$criteria->compare('abbrev',$this->abbrev,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -94,7 +111,7 @@ class Competition extends CActiveRecord
 	{
 		// Recommended: Secure Way to Write SQL in Yii 
 		//$sql= 'SELECT id ,title AS label FROM users WHERE title LIKE :name';
-		$sql= 'SELECT id, name as value FROM competitions WHERE name LIKE :name';
+		$sql= "SELECT id, CONCAT(name,' (',short_code,')') as value FROM competitions WHERE name LIKE :name";
 		$name = $name.'%';
 		return Yii::app()->db->createCommand($sql)->queryAll(true,array(':name'=>$name));
 	}

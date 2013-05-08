@@ -23,5 +23,10 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'name',
+		'type',
+		'code',
+		'grade',
+		'short_code',
+		'abbrev',
 	),
 )); ?>

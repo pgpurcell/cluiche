@@ -70,8 +70,17 @@ class TeamKitController extends Controller
 		if(isset($_POST['TeamKit']))
 		{
 			$model->attributes=$_POST['TeamKit'];
+
+			$uploadedFile=CUploadedFile::getInstance($model,'image');
+ 
+			$model->image = '';
 			if($model->save())
+			{
+				$model->image = $model->id;
+				$uploadedFile->saveAs(Yii::app()->basePath.'/../images/teamkits/'.$model->image);
+				$model->save();
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -93,9 +102,19 @@ class TeamKitController extends Controller
 
 		if(isset($_POST['TeamKit']))
 		{
+			$_POST['TeamKit']['image'] = $model->image;
 			$model->attributes=$_POST['TeamKit'];
+			
+			$uploadedFile=CUploadedFile::getInstance($model,'image');
+			
 			if($model->save())
+			{
+				if(!empty($uploadedFile))  // check if uploaded file is set or not
+				{
+					$uploadedFile->saveAs(Yii::app()->basePath.'/../images/teamkits/'.$model->image);
+				}
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(

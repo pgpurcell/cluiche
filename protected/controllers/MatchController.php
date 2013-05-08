@@ -31,7 +31,8 @@ class MatchController extends Controller
 				'actions'=>
 					array(
 						'index','view','autocompleteReferee','autocompleteVenue','autocompleteTeam1',
-						'autocompleteTeam2','autocompleteCompetition'
+						'autocompleteTeam2','autocompleteTeamKit1','autocompleteTeamKit2',
+						'autocompleteCompetition'
 					),
 				'users'=>array('*'),
 			),
@@ -226,6 +227,34 @@ class MatchController extends Controller
 
 		if($term !='') {
 			$teams =  Team::teamsAutoComplete($term);
+			echo CJSON::encode($teams);
+			Yii::app()->end();
+		}
+	}
+
+	/**
+	 * Adds autocompletion to the teamkit1 field
+	 * @author Patrick Purcell
+	 */
+	public function actionAutocompleteTeamKit1() {
+		$term = trim($_GET['term']) ;
+
+		if($term !='') {
+			$teams =  TeamKit::teamKitsAutoComplete($term);
+			echo CJSON::encode($teams);
+			Yii::app()->end();
+		}
+	}
+
+	/**
+	 * Adds autocompletion to the teamkit2 field
+	 * @author Patrick Purcell
+	 */
+	public function actionAutocompleteTeamKit2() {
+		$term = trim($_GET['term']) ;
+
+		if($term !='') {
+			$teams =  TeamKit::teamKitsAutoComplete($term);
 			echo CJSON::encode($teams);
 			Yii::app()->end();
 		}

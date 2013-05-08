@@ -7,6 +7,8 @@
 // PPurcell - 21/04/2013
 // For the short codes
 require('protected/views/match/dropdownlists.php');
+
+require_once('protected/views/ViewUtils.php');
 ?>
 
 <?php
@@ -49,33 +51,45 @@ if ($index == 0 && 1==2)
 		$data_str = $type_shortcodes[$data->type].' '
 			.$grade_shortcodes[$data->grade]
 			.$code_shortcodes[$data->code];
-		echo CHtml::encode($data_str); 
+		echo CHtml::link(CHtml::encode($data_str), array('view', 'id'=>$data->id));
+		?>
+	</td>
+	<td>
+		<?php echo CHtml::encode(ViewUtils::parseDbDateTime($data->date_time)); ?>
+	</td>
+	<td>
+		<?php
+		$team1_name = (isset($data->team1))?$data->team1->name:'';
+		echo CHtml::encode($team1_name);
+		?>
+	</td>
+	<td>
+		<?php echo CHtml::encode($data->score1); ?>
+	</td>
+	<td>
+		<?php echo CHtml::encode($data->score2); ?>
+	</td>
+	<td>
+		<?php
+		$team2_name = (isset($data->team2))?$data->team2->name:'';
+		echo CHtml::encode($team2_name);
+		?>
+	</td>
+	<td>
+		<?php
+		$venue_name = (isset($data->venue))?$data->venue->name:'';
+		echo CHtml::encode($venue_name);
 		?>
 	</td>
 	<td>
 		<?php
 		$competition_name = (isset($data->competition))?$data->competition->name:'';
 		$data_str = $data->season.' '
-			.$competition_name.' '
-			.$data->section.' '
-			.$data->stage;
-		echo CHtml::encode($data_str); 
+			.$comp_shortcodes[$competition_name].' '
+			.ViewUtils::abbrev_str($data->section).' '
+			.ViewUtils::abbrev_str($data->stage);
+		echo CHtml::encode($data_str);
 		?>
-	</td>
-	<td>
-		<?php echo CHtml::link(CHtml::encode($data->season), array('view', 'id'=>$data->id)); ?>
-	</td>
-	<td>
-		<?php echo CHtml::encode(date('d/m/Y', strtotime($data->date_time))); ?>
-	</td>
-	<td>
-		<?php echo CHtml::encode($competition_name); ?>
-	</td>
-	<td>
-		<?php echo CHtml::encode($data->section); ?>
-	</td>
-	<td>
-		<?php echo CHtml::encode($data->stage); ?>
 	</td>
 </tr>
 

@@ -18,12 +18,18 @@ $this->menu=array(
 
 <h1>View TeamKit #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php 
+$team_name = (isset($model->team))?$model->team->name:'';
+$this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'image',
-		'team_id',
+		array(
+			'name'=>'image',
+			'type'=>'html',
+			'value'=>(!empty($model->image))?CHtml::image(Yii::app()->assetManager->publish(Yii::app()->basePath.'/../images/teamkits/'.$model->image),"",""):"no image",
+		),
+		array('label'=>$model->getAttributeLabel('team_id'), 'value'=>$team_name),
 		'date_from',
 		'date_to',
 	),

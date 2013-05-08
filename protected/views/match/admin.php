@@ -62,6 +62,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'score2',
 		'venue_id',
 		'referee_id',
+		'attendance',
+		'notes',
 		*/
 		array(
 			'class'=>'CButtonColumn',
