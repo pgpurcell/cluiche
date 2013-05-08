@@ -1,2 +1,8 @@
 /assets/
+/nbproject/
+/protected/data/*.db
+/protected/runtime/
+/protected/controllers/Match_1Controller.php
+/protected/models/Match_1.php
 /protected/views/match_1/
+/protected/TODO.txt
