@@ -27,7 +27,7 @@ $this->menu=array(
 		'code',
 		'grade',
 		'type',
-		'competition',
+		'competition_id',
 		'alt_comp_name',
 		'section',
 		'stage',

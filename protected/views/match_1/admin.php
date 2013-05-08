@@ -52,7 +52,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'grade',
 		'type',
 		/*
-		'competition',
+		'competition_id',
 		'alt_comp_name',
 		'section',
 		'stage',

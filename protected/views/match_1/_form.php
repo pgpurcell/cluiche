@@ -46,9 +46,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'competition'); ?>
-		<?php echo $form->textField($model,'competition',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'competition'); ?>
+		<?php echo $form->labelEx($model,'competition_id'); ?>
+		<?php echo $form->textField($model,'competition_id'); ?>
+		<?php echo $form->error($model,'competition_id'); ?>
 	</div>
 
 	<div class="row">

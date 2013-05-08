@@ -29,8 +29,8 @@
 	<?php echo CHtml::encode($data->type); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('competition')); ?>:</b>
-	<?php echo CHtml::encode($data->competition); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('competition_id')); ?>:</b>
+	<?php echo CHtml::encode($data->competition_id); ?>
 	<br />
 
 	<?php /*
