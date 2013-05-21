@@ -49,6 +49,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'competition_id',
 		'season',
 		'winner_id',
+		'notes',
 		array(
 			'class'=>'CButtonColumn',
 		),

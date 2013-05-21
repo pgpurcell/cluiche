@@ -8,6 +8,7 @@
  * @property integer $competition_id
  * @property string $season
  * @property integer $winner_id
+ * @property string $notes
  */
 class CompetitionSeason extends CActiveRecord
 {
@@ -37,12 +38,12 @@ class CompetitionSeason extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_id, season, winner_id', 'required'),
 			array('competition_id, winner_id', 'numerical', 'integerOnly'=>true),
 			array('season', 'length', 'max'=>4),
+			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, competition_id, season, winner_id', 'safe', 'on'=>'search'),
+			array('id, competition_id, season, winner_id, notes', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +68,7 @@ class CompetitionSeason extends CActiveRecord
 			'competition_id' => 'Competition',
 			'season' => 'Season',
 			'winner_id' => 'Winner',
+			'notes' => 'Notes',
 		);
 	}
 
@@ -85,6 +87,7 @@ class CompetitionSeason extends CActiveRecord
 		$criteria->compare('competition_id',$this->competition_id);
 		$criteria->compare('season',$this->season,true);
 		$criteria->compare('winner_id',$this->winner_id);
+		$criteria->compare('notes',$this->notes);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

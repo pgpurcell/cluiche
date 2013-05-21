@@ -2,10 +2,9 @@
 /* @var $this MatchController */
 /* @var $model Match */
 
-$this->breadcrumbs=array(
-	'Matches'=>array('index'),
-	$model->id,
-);
+// TODO: Add notes field to Competition Seasons module
+// TODO: Find somewhere to put alt_comp_name
+// TODO: Team Kits under score fields
 
 $this->menu=array(
 	array('label'=>'List Match', 'url'=>array('index')),
@@ -14,10 +13,42 @@ $this->menu=array(
 	array('label'=>'Delete Match', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Match', 'url'=>array('admin')),
 );
+
+$competition_name = (isset($model->competition))?$model->competition->name:'';
+$team1_name = (isset($model->team1))?$model->team1->name:'';
+$team2_name = (isset($model->team2))?$model->team2->name:'';
+
+$venue_name = '';
+$venue_address = '';
+if (isset($model->venue))
+{
+	$venue_name = $model->venue->name;
+	$venue_address = $model->venue->address;	
+}
 ?>
 
-<h1>View Match #<?php echo $model->id; ?></h1>
+<span class="minor_text"><?php echo $model->type ?></span>
+<h2 class="underline_title"><?php echo $model->season.' '.$competition_name.' '.$model->stage.' - '.$model->grade.' '.$model->code; ?></h2>
+<?php if (!empty($model->section)) { ?><h4><?php echo $model->section ?></h4><?php } ?>
+<table>
+	<tr>
+		<td><?php echo date_format(new DateTime($model->date_time), 'd/m/Y H:m') ?></td>
+		<td class="cell_right"><?php echo $team1_name ?></td>
+		<td class="cell_left"><?php echo $model->score1 ?></td>
+		<td class="cell_right"><?php echo $model->score2 ?></td>
+		<td class="cell_left"><?php echo $team2_name ?></td>
+		<td><?php echo $venue_name; echo (!empty($venue_address))?',<br>'.$venue_address:''; ?></td>
+	</tr>
+</table>
 
+
+
+
+
+
+
+<?php
+/*
 	<?php
 	// PPurcell - 19/03/2013
 	// Only set if the related model exists
@@ -33,7 +64,16 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'season',
+		array(
+			'label'=>$model->getAttributeLabel('season'),
+			'value'=>$model->season,
+			'itemTemplate'=>'<tr class="{class}"><th>{label}:{value}</th>',
+		),
+		array(
+			'label'=>$model->getAttributeLabel('date_time'),
+			'value'=>$model->date_time,
+			'itemTemplate'=>'<td>{label}:{value}</td></tr>\n',
+		),
 		'date_time',
 		'code',
 		'grade',
@@ -68,4 +108,4 @@ $this->menu=array(
 		'attendance',
 		'notes',
 	),
-)); ?>
+));*/ ?>

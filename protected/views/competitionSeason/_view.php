@@ -21,5 +21,9 @@
 	<?php echo CHtml::encode($data->winner_id); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('notes')); ?>:</b>
+	<?php echo CHtml::encode($data->notes); ?>
+	<br />
+
 
 </div>

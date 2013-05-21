@@ -33,6 +33,12 @@
 		<?php echo $form->error($model,'winner_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'notes'); ?>
+		<?php echo $form->textArea($model,'notes',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'notes'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

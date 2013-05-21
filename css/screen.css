@@ -18,7 +18,11 @@ article, aside, details, figcaption, figure, dialog, footer, header, hgroup, men
 body {line-height:1.5;background:white;}
 table {border-collapse:separate;border-spacing:0;}
 caption, th, td {text-align:left;font-weight:normal;float:none !important;}
-table, th, td {vertical-align:middle;}
+table, th, td
+{
+	/* PPurcell - 15/05/2013: from middle */
+	vertical-align:top;
+}
 blockquote:before, blockquote:after, q:before, q:after {content:'';}
 blockquote, q {quotes:"" "";}
 a img {border:none;}
@@ -236,3 +240,24 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
+
+/* PPurcell - 15/05/2013 */
+.underline_title
+{
+    border-bottom: 1px solid #C9E0ED;
+    text-align: center;
+}
+.cell_left
+{
+	text-align: left;
+}
+.cell_right
+{
+	text-align: right;
+}
+.minor_text
+{
+	font-size: 0.8em;
+	color: #999;
+}
+/* PP */

@@ -24,6 +24,7 @@
  * @property integer $referee_id
  * @property integer $attendance
  * @property string $notes
+ * TODO: Use the bookmarked pages to start formatting (templating) the Match page and setting formats correctly.
  * TODO: Make a replay field
  * TODO: Bug in TeamKit mod where team name/id is not saved. Think about assigning kit to multiple teams or one team?
  * TODO: Format display of attendance field e.g. 10,000

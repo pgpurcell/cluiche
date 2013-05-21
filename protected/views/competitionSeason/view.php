@@ -25,5 +25,6 @@ $this->menu=array(
 		'competition_id',
 		'season',
 		'winner_id',
+		'notes'
 	),
 )); ?>
