@@ -42,6 +42,7 @@
 				array('label'=>'Competitions', 'url'=>array('competition/')),
 				array('label'=>'Competition Seasons', 'url'=>array('competitionSeason/')),
 				array('label'=>'Team Kits', 'url'=>array('teamKit/')),
+				array('label'=>'Articles', 'url'=>array('article/')),
 				
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
